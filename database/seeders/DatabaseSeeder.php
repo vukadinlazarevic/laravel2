@@ -13,11 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // ovde je vrlo bitan redosled kojim pozivamo seedere
+        // jer zelimo da prvo sacuvamo blogove u bazi a da tek onda dodajemo komentare nad tim blogovima
+        $this->call([
+            BlogSeeder::class,
+            KomentarSeeder::class,
         ]);
     }
 }
