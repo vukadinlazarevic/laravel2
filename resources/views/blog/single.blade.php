@@ -17,7 +17,24 @@
         <p class="card-text">{{ $blog->sadrzaj }}</p>
     </div>
 </div>
+<h3 class="mt-4">Komentari</h3>
+@if ($blog->komentari->isEmpty())
+<p>Nema komentara.</p>
+@else
+<ul class="list-group">
+    @foreach ($blog->komentari as $komentar)
+    <li class="list-group-item">
+        <div>
+        <small class="text-secondary">
+            {{ $komentar->created_at->format("d.m.Y H:i") }}
+        </small>
+        </div>
+        <h4>{{ $komentar->komentar }}</h4>
 
+    </li>
+    @endforeach
+</ul>
+@endif
 <p>
     <a href="{{ route('blog.list') }}" class="btn btn-primary mt-3">
         Nazad na listu blogova
